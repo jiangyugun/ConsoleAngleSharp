@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.0.1" />
+    <PackageReference Include="LINQPad" Version="5.46.0" />
   </ItemGroup>
 
 </Project>
