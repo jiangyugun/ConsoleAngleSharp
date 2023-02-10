@@ -27,11 +27,10 @@ async Task Main()
 	
     // 使用 OpenAsync 來打開網頁抓回內容
 	var document = await browser.OpenAsync(url);
+	//document.Body.InnerHtml.Dump();
 	
 	// 取出所有文章標題
 	var postSource = document.QuerySelectorAll("div.r-ent");
-	
-	//document.Body.InnerHtml.Dump();
 	
 	//	document
 	//		.QuerySelectorAll("div.r-ent")// 指定 class 為 r-ent 的 div
