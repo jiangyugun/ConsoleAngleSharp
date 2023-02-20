@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAngleSharp", "ConsoleAngleSharp\ConsoleAngleSharp.csproj", "{47276D3C-874F-42FA-8877-6308DA64F155}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAngleSharp", "ConsoleAngleSharp\ConsoleAngleSharp.csproj", "{47276D3C-874F-42FA-8877-6308DA64F155}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngleSharpAPI", "AngleSharpAPI\AngleSharpAPI.csproj", "{430D9C80-CF7E-4856-8073-15BA30042D42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{47276D3C-874F-42FA-8877-6308DA64F155}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47276D3C-874F-42FA-8877-6308DA64F155}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47276D3C-874F-42FA-8877-6308DA64F155}.Release|Any CPU.Build.0 = Release|Any CPU
+		{430D9C80-CF7E-4856-8073-15BA30042D42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{430D9C80-CF7E-4856-8073-15BA30042D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{430D9C80-CF7E-4856-8073-15BA30042D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{430D9C80-CF7E-4856-8073-15BA30042D42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

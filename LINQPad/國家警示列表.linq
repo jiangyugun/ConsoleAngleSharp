@@ -1,5 +1,5 @@
 <Query Kind="Program">
-  <Reference Relative="..\ConsoleAngleSharp\bin\Debug\net6.0\AngleSharp.dll">E:\Demo Core\ConsoleAngleSharp\ConsoleAngleSharp\bin\Debug\net6.0\AngleSharp.dll</Reference>
+  <Reference Relative="..\ConsoleAngleSharp\bin\Debug\net6.0\AngleSharp.dll">D:\Code\ASP.NET Core\AngleSharp\ConsoleAngleSharp\bin\Debug\net6.0\AngleSharp.dll</Reference>
   <Namespace>AngleSharp</Namespace>
   <Namespace>AngleSharp.Dom</Namespace>
   <Namespace>System.Threading.Tasks</Namespace>
@@ -32,7 +32,7 @@ async Task Main()
 	var post = postSource.Select(post=>{
 		var countryElement = post.QuerySelector("[data-title=國家] > a");
 		var country = countryElement?.InnerHtml;
-		var link = countryElement?.GetAttribute("href");
+		var link = "https://www.boca.gov.tw" + countryElement?.GetAttribute("href");
 		var cautionElement = post.QuerySelector("[data-title=最新警示提醒]");
 		cautionElement?.RemoveChild(cautionElement.QuerySelector("span")); //移除<span>
 		var caution = cautionElement?.InnerHtml;
