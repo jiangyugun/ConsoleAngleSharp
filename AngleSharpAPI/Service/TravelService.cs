@@ -2,11 +2,57 @@
 using AngleSharp;
 using AngleSharpAPI.Entity;
 using Microsoft.Extensions.Hosting;
+using AngleSharpAPI.Interface;
+using Newtonsoft.Json;
 
 namespace AngleSharpAPI.Service
 {
-    public class TravelService
+    public class TravelService: ITravelInterface
     {
+        public async Task<DataResultModel<Info>> GetActivitiesAsync()
+        {
+            DataResultModel<Info> dataResultModel = new();
+            using (HttpClientHandler handler = new())
+            {
+                using HttpClient client = new();
+                try
+                {
+                    var url = "https://media.taiwan.net.tw/XMLReleaseALL_public/activity_C_f.json";
+                    HttpResponseMessage? response = null;
+                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                    response = await client.GetAsync(url);
+
+                    if (response != null)
+                    {
+                        var strResult = await response.Content.ReadAsStringAsync();
+                        var activities = JsonConvert.DeserializeObject<Activity>(strResult);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            dataResultModel.DataList = activities.XML_Head.Infos.Info.ToList();
+                            dataResultModel.Result = true;
+                            dataResultModel.Msg = "成功取得資料";
+                        }
+                        else
+                        {
+                            if (dataResultModel.DataList.ToList().Count <= 0)
+                            {
+                                dataResultModel.Msg = String.Format("Error Code:{0}, Error Message:{1}", response.StatusCode, response.RequestMessage);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        dataResultModel.Msg = "應用程式呼叫API發生異常";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    dataResultModel.Msg = ex.Message;
+                }
+            }
+            return dataResultModel;
+        }
+
         public async Task<List<TravelWarning>> GetAllTravelWarningAsync()
         {
             var config = AngleSharp.Configuration.Default
