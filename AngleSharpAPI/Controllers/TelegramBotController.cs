@@ -6,11 +6,19 @@ namespace AngleSharpAPI.Controllers
 {
     public class TelegramBotController : Controller
     {
+        readonly IConfiguration _configuration;
+
+        public TelegramBotController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         [HttpGet("Test")]
         [Route("[controller]/Test_TG")]
         public async Task<string> Test()
         {
-            var botClient = new TelegramBotClient("6022289708:AAFYPYQyoH6lVAzOhRjP7J4eIr1dr2FqRDk");
+            var telegramToken = _configuration["TelegramToken"];
+            var botClient = new TelegramBotClient(telegramToken);
             //取得機器人基本資訊
             var me = await botClient.GetMeAsync();
             //發送訊息到指定頻道
