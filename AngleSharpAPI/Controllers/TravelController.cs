@@ -35,5 +35,12 @@ namespace AngleSharpAPI.Controllers
         {
             return await travelInterface.GetActivitiesAsync();
         }
+
+        [HttpPost]
+        [Route("[controller]/PoiNearList")]
+        public Task<DataResultModel<PoiNearList>> GetPoiNearLists(string accessToken)
+        {
+            return travelInterface.GetViewPoint(accessToken);
+        }
     }
 }

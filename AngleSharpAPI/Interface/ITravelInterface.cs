@@ -6,5 +6,6 @@ namespace AngleSharpAPI.Interface
     {
         Task<List<TravelWarning>> GetAllTravelWarningAsync();
         Task<DataResultModel<Info>> GetActivitiesAsync();
+        Task<DataResultModel<PoiNearList>> GetViewPoint(string accessToken);
     }
 }

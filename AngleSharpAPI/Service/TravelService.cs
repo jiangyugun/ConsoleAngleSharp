@@ -4,6 +4,9 @@ using AngleSharpAPI.Entity;
 using Microsoft.Extensions.Hosting;
 using AngleSharpAPI.Interface;
 using Newtonsoft.Json;
+using System.Net;
+using System.Text;
+using System.Net.Http.Headers;
 
 namespace AngleSharpAPI.Service
 {
@@ -89,6 +92,36 @@ namespace AngleSharpAPI.Service
             .Where(post => post.Country != null).ToList();
 
             return travelWarnings;
+        }
+
+        public async Task<DataResultModel<PoiNearList>> GetViewPoint(string accessToken)
+        {
+            string url = "https://uds.api.liontravel.com/api/v2/PoiNearList?px=121.518831&py=25.035702&radius=500";
+            DataResultModel<PoiNearList> dataResultModel = new();
+
+            using (HttpClientHandler handler = new())
+            {
+                try
+                {
+                    using HttpClient client = new();
+                    HttpResponseMessage? response = null;
+                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic ", accessToken);
+                    response = await client.GetAsync(url);
+
+                    var strResult = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<PoiNearList>(strResult);
+                    var test = result.Data.pois.ToList();
+                    //dataResultModel.DataList = 
+                    dataResultModel.Result = true;
+                    dataResultModel.Msg = "成功取得資料";
+                }
+                catch(Exception ex)
+                {
+                    dataResultModel.Msg = ex.ToString();
+                }
+            }
+            return dataResultModel;
         }
     }
 }
